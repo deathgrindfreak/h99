@@ -15,20 +15,17 @@ myButLast (x:xs) = myButLast xs
 
 -- Problem 3
 elementAt :: [a] -> Int -> Maybe a
-elementAt [] _ = Nothing
-elementAt (x:_) 0 = Just x
-elementAt (x:xs) n = elementAt xs (n-1)
+elementAt xs n = case drop n xs of
+    [] -> Nothing
+    (x:_) -> Just x
 
 -- Problem 4
 myLength :: [a] -> Int
-myLength [] = 0
-myLength (x:xs) = 1 + myLength xs
+myLength = foldr (\x a -> 1 + a) 0
 
 -- Problem 5
 myReverse :: [a] -> [a]
-myReverse lst = rev lst [] where
-    rev [] acc = acc
-    rev (x:xs) acc = rev xs (x:acc)
+myReverse = foldl (flip (:)) []
     
 -- Problem 6
 isPalindrome :: (Eq a) => [a] -> Bool
@@ -37,5 +34,4 @@ isPalindrome xs = and $ map (\(x, y) -> x == y) $ zip xs (reverse xs)
 -- Problem 7
 data NestedList a = Elem a | List [NestedList a]
 flatten :: NestedList a -> [a]
-flatten (Elem e) = e
-flatten (List l) = map flatten l
+flatten xs = undefined
