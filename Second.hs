@@ -21,7 +21,7 @@ decodeModified = foldr dec []
 -- Problem 13
 encodeDirect :: Eq a => [a] -> [Grouping a]
 encodeDirect [] = []
-encodeDirect (x:xs) = let (f,s) = break (/=x) xs in
+encodeDirect (x:xs) = let (f,s) = span (==x) xs in
     case length f of
         1 -> Single x : encodeDirect s
         _ -> Multiple (length f) x : encodeDirect s
