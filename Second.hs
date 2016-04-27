@@ -59,4 +59,4 @@ rotate n xs = let l = length xs
               
 -- Problem 20
 removeAt :: Int -> [a] -> (a, [a])
-removeAt n xs = let (f, (s:ss)) = split n xs in (s, f ++ ss)
+removeAt n xs = let (f, s:ss) = split n xs in (s, f ++ ss)
